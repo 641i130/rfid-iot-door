@@ -1,6 +1,9 @@
 # rfid-iot-door
 An Arduino ESP8266 RFID door-relay authentication system with a logging back end.
 
+#### This is open source!
+I want people to be able to contribute to this project if you have any ideas. Please feel free to fork as well!
+
 ## Features
 - Google Sheets Integration with Real-Time logging using IFTTT
 - Long range (Range of wifi and connection to the arduino board)
