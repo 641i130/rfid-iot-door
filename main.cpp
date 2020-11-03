@@ -11,7 +11,7 @@
 #define RST_PIN 0
 int del = 2000;
 MFRC522 mfrc522(SS_PIN, RST_PIN);   // Create MFRC522 instance.
-int x = 1;
+int x = 0;
 char *arr[] = {"00 00 00 00"};
 int arrlen = 1; // Length of arr
 int t;
