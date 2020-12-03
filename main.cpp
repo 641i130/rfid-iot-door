@@ -13,17 +13,17 @@ int del = 2000;
 MFRC522 mfrc522(SS_PIN, RST_PIN);   // Create MFRC522 instance.
 int x = 0;
 char *arr[] = {"00 00 00 00"};
-int arrlen = 1; // Length of arr
+int arrlen = 1;
 int t;
 String cardid;
 
 // Variables for webserver
-String password = "Web Server Pasword! Change ME!";
+String password = "CHANGEME";
 ESP8266WebServer server(80);
 
 // Variables and Functions for IFTTT
 String sifttt = "maker.ifttt.com";
-String resource = "IFTTT Auth Key";
+String resource = "Token";
 
 void handleRoot() {
   String s = page; //Read HTML contents
@@ -31,7 +31,7 @@ void handleRoot() {
 }
 void sendcid(String cardid) {
     if (cardid != "" && x == 0) {
-      String jsonObject = String("{\"value1\":\"") + cardid + "\"}";
+      String jsonObject = String("{\"value1\":\"") + cardid + "\"" + "," + String("\"value2\":\"") + "Location" + "\"}";
       //sifttt
       Serial.print("Sending: "+jsonObject);
 
@@ -106,8 +106,12 @@ void setup() {
 
   // Wifi connect /  Server start
   const char* ssid = "SSID";
-  const char* password = "SSID PASS";
+  const char* password = "SSID-PASSWORD";
   WiFi.begin(ssid, password);
+  IPAddress staticIP(192, 168, 1, 196); // Static IP Address
+  IPAddress gateway(192, 168, 1, 10); // Gateway (usually its your main router in the building)
+  IPAddress subnet(255, 255, 255, 0); // Do some searching on how to get this 
+  IPAddress dns(1, 1, 1, 1); // Not really needed unless you're requesting info from external sites
   // Connect to self to host server
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
@@ -163,5 +167,5 @@ void loop() {
   Serial.println(" Access denied");
   sendcid(cardid);
   delay(del);
-  del = del*2; /// exponential wait time to mitigate brute forcing
+  del = del*2; // Exponential wait time to mitigate brute force attacks
 }
