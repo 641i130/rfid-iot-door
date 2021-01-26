@@ -24,3 +24,8 @@ I want people to be able to contribute to this project if you have any ideas. Pl
 
 ### Overall Cost: ~ $60 or less (depending on the quality of parts you want)
 
+## Build Guide:
+
+1. First gather all the parts and make sure you have about an hour of time to assemble/solder everything.
+
+2. 
